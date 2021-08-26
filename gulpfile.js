@@ -5,7 +5,8 @@ const browserSync = require('browser-sync').create();
 const uglify = require('gulp-uglify-es').default;
 const autoprefixer = require('gulp-autoprefixer');
 const imagemin = require('gulp-imagemin');
-const del = require('del')
+const del = require('del');
+const gulpStylelint = require('gulp-stylelint');
 
 function browsersync() {
   browserSync.init({
@@ -16,6 +17,15 @@ function browsersync() {
 
 function clean() {
   return del('dist')
+}
+
+function lintCss() {
+  return src('src/**/*.scss')
+    .pipe(gulpStylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }))
 }
 
 function images() {
@@ -35,7 +45,7 @@ function scripts() {
 }
 
 function styles() {
-  return src('src/sass/main.sass')
+  return src('src/scss/main.scss')
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(concat('style.min.css'))
     .pipe(autoprefixer({
@@ -57,7 +67,7 @@ function build() {
 }
 
 function watching() {
-  watch(['src/sass/**/*.sass'], styles)
+  watch(['src/scss/**/*.scss'], styles)
   watch(['src/js/**/*.js', '!src/js/main.min.js'], scripts)
   watch(['src/**/*.html']).on('change', browserSync.reload)
 }
@@ -68,6 +78,7 @@ exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.images = images;
 exports.clean = clean;
+exports.lint = lintCss;
 
 exports.build = series(clean, images, build);
 exports.default = parallel(browsersync, watching)
