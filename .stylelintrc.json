@@ -1,7 +1,6 @@
 {
-  "extends": ["stylelint-order"],
+  "extends": ["stylelint-config-recess-order"],
   "rules": {
-      "color-hex-case": "lower",
       "color-hex-length": "short",
       "color-no-invalid-hex": true,
       "indentation": 2
