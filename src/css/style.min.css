@@ -1,1 +1,5 @@
-*{-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-font-smoothing:antialiased}html{font-family:'Poppins', sans-serif}button,a{cursor:pointer}h1{color:red}.container{max-width:1230px;width:100%;padding:0 30px;margin:0 auto}header{background:green}
+*{-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-font-smoothing:antialiased}html{font-family:"Poppins",sans-serif}button,a{cursor:pointer}h1{color:#fff}.container{width:100%;opacity:1;padding:0 30px;max-width:1230px;margin:0 auto}header{background:green}
+
+*{-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-font-smoothing:antialiased}html{font-family:"Poppins",sans-serif}button,a{cursor:pointer}h1{color:#fff}.container{width:100%;opacity:1;padding:0 30px;max-width:1230px;margin:0 auto}
+
+header{background:green}

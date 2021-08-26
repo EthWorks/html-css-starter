@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-recess-order"],
+  "extends": ["stylelint-config-standard", "stylelint-config-recess-order"],
   "rules": {
       "color-hex-length": "short",
       "color-no-invalid-hex": true,
