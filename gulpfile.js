@@ -66,7 +66,7 @@ function build() {
 }
 
 function watching() {
-  watch(['src/sass/**/*.sass'], styles).on('change', browserSync.reload)
+  watch(['src/sass/**/*.sass'], styles)
   watch(['src/js/**/*.js', '!src/js/main.min.js'], scripts)
   watch(['src/**/*.html']).on('change', browserSync.reload)
 }
