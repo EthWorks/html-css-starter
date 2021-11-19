@@ -35,21 +35,14 @@ function scripts() {
     .pipe(browserSync.stream())
 }
 
-function stylesLinter() {
+function styles() {
   return src('src/sass/**/*.sass')
     .pipe(sassLint({
       files: { ignore: 'src/sass/helpers/_reset.sass' },
       rules: {
-        'mixins-before-declarations': 0
+        'mixins-before-declarations': 0,
       }
     }))
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
-}
-
-function styles() {
-  return src('src/sass/main.sass')
-    .pipe(sassLint())
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
     .pipe(sass({ outputStyle: 'compressed' }))
@@ -73,13 +66,11 @@ function build() {
 }
 
 function watching() {
-  watch(['src/sass/**/*.sass'], stylesLinter).on('change', browserSync.reload)
   watch(['src/sass/**/*.sass'], styles).on('change', browserSync.reload)
   watch(['src/js/**/*.js', '!src/js/main.min.js'], scripts)
   watch(['src/**/*.html']).on('change', browserSync.reload)
 }
 
-exports.stylesLinter = stylesLinter;
 exports.styles = styles;
 exports.watching = watching;
 exports.browsersync = browsersync;
@@ -88,4 +79,4 @@ exports.images = images;
 exports.clean = clean;
 
 exports.build = series(clean, images, build);
-exports.default = parallel(browsersync, watching)
+exports.default = parallel(clean, images, scripts, styles, browsersync, watching)
